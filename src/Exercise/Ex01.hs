@@ -49,7 +49,7 @@ isPalindrome = liftM2 (==) myReverse id
 data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
-flatten (List xs) = foldr (++) [] (map flatten xs)
+flatten (List xs) = concatMap flatten xs
 
 compress :: Eq a => [a] -> [a]
 compress [] = []
@@ -58,3 +58,10 @@ compress (x : y : xs) =
   if x == y
     then compress (y : xs)
     else x : compress (y : xs)
+
+pack :: Eq a => [a] -> [[a]]
+pack [] = []
+pack xs = firstGroup : pack remaining
+  where
+    firstGroup = takeWhile (== head xs) xs
+    remaining = dropWhile (== head xs) xs

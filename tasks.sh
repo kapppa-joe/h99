@@ -9,6 +9,9 @@ do
     stack)
         stack test
     ;;
+    sensei)
+        stack exec sensei test/Spec.hs
+    ;;
     *)
         echo "Invalid command: '${command}'"
         exit 1

@@ -1,4 +1,4 @@
-module Exercise.Ex01 (myLast, myButLast, elementAt, myLength) where
+module Exercise.Ex01 where
 
 myLast :: [a] -> a
 myLast lst =
@@ -26,3 +26,7 @@ myLength :: [a] -> Int
 -- myLength [] = 0
 -- myLength (_:xs) = 1 + myLength xs
 myLength = foldl (\acc _ -> 1 + acc) 0
+
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]

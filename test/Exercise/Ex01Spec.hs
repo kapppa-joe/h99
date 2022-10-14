@@ -1,7 +1,7 @@
 module Exercise.Ex01Spec (spec)  where
 
 import Test.Hspec
-import Exercise.Ex01 (myLast, myButLast, elementAt, myLength)
+import Exercise.Ex01 (myLast, myButLast, elementAt, myLength, myReverse)
 import Control.Exception (evaluate)
 import Test.Hspec.Discover (describe)
 import Test.Hspec (it, describe)
@@ -31,3 +31,8 @@ spec = do
     it "Return the number of elements of a list" $ do
       myLength [123, 456, 789] `shouldBe` 3
       myLength "Hello, world!" `shouldBe` 13
+
+  describe "myReverse" $ do
+    it "Reverse a list" $ do
+      myReverse "A man, a plan, a canal, panama!" `shouldBe` "!amanap ,lanac a ,nalp a ,nam A"
+      myReverse [1,2,3,4] `shouldBe` [4,3,2,1]

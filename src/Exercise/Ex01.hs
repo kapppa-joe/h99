@@ -1,4 +1,4 @@
-module Exercise.Ex01 (myLast, myButLast) where
+module Exercise.Ex01 (myLast, myButLast, elementAt) where
 
 myLast :: Ord a => [a] -> a
 myLast lst =
@@ -14,3 +14,10 @@ myButLast lst =
     [_] -> error "Exception: list has less than 2 elements"
     [x, _] -> x
     (_ : xs) -> myButLast xs
+
+elementAt :: Ord a => [a] -> Int -> a
+elementAt lst index
+  | null lst    = error "Exception: index too large"
+  | index == 1  = head lst
+  | index < 1   = error "Exception: non-positive index"
+  | otherwise   = elementAt (tail lst) (index - 1)

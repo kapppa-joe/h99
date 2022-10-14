@@ -2,9 +2,8 @@ module Exercise.Ex01Spec (spec)  where
 
 import Test.Hspec
 import Exercise.Ex01
+import Exercise.Ex01 (NestedList)
 import Control.Exception (evaluate)
-import Test.Hspec.Discover (describe)
-import Test.Hspec (it, describe)
 
 spec :: Spec
 spec = do
@@ -43,4 +42,13 @@ spec = do
       isPalindrome "madamimadam" `shouldBe` True
       isPalindrome [1,2,4,8,16,8,4,2,1] `shouldBe` True
       isPalindrome "abccba" `shouldBe` True
-    
+
+  describe "flatten" $ do
+    it "Flatten a nested list structure" $ do
+      flatten (Elem 5) `shouldBe` [5]
+      flatten (List [Elem 1, List [Elem 2, List [Elem 3, Elem 4], Elem 5]]) `shouldBe` [1,2,3,4,5]
+      flatten (List [Elem 1]) `shouldBe` [1]
+    it "can flatten an empty list" $ do
+      -- set [] to an empty list of Int to avoid "Ambiguous type variable ‘a0’" error. 
+      let emptyList = [] :: [NestedList Int]
+      flatten (List emptyList) `shouldBe` []

@@ -10,8 +10,8 @@ myLast lst =
     (_ : xs) -> myLast xs
 
 myButLast :: [a] -> a
-myButLast lst = 
-  case lst of 
+myButLast lst =
+  case lst of
     [] -> error "Exception: list has less than 2 elements"
     [_] -> error "Exception: list has less than 2 elements"
     [x, _] -> x
@@ -19,22 +19,24 @@ myButLast lst =
 
 elementAt :: [a] -> Int -> a
 elementAt lst index
-  | null lst    = error "Exception: index too large"
-  | index == 1  = head lst
-  | index < 1   = error "Exception: non-positive index"
-  | otherwise   = elementAt (tail lst) (index - 1)
+  | null lst = error "Exception: index too large"
+  | index == 1 = head lst
+  | index < 1 = error "Exception: non-positive index"
+  | otherwise = elementAt (tail lst) (index - 1)
 
 myLength :: [a] -> Int
 myLength = foldl (\acc _ -> 1 + acc) 0
+
 -- myLength [] = 0
 -- myLength (_:xs) = 1 + myLength xs
 
 myReverse :: [a] -> [a]
 myReverse [] = []
-myReverse (x:xs) = myReverse xs ++ [x]
+myReverse (x : xs) = myReverse xs ++ [x]
 
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome = liftM2 (==) myReverse id
+
 -- isPalindrome xs =
 --   case xs of
 --     []  -> True
@@ -44,3 +46,7 @@ isPalindrome = liftM2 (==) myReverse id
 --             lastElem = last xs
 --             middlePart = tail . init $ xs
 
+data NestedList a = Elem a | List [NestedList a]
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List xs) = foldr (++) [] (map flatten xs)

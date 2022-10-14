@@ -52,3 +52,7 @@ spec = do
       -- set [] to an empty list of Int to avoid "Ambiguous type variable ‘a0’" error. 
       let emptyList = [] :: [NestedList Int]
       flatten (List emptyList) `shouldBe` []
+
+  describe "compress" $ do
+    it "Eliminate consecutive duplicate of list elements" $ do
+      compress "aaaabccaadeeee" `shouldBe` "abcade"

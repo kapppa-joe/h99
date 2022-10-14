@@ -50,3 +50,11 @@ data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List xs) = foldr (++) [] (map flatten xs)
+
+compress :: Eq a => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x : y : xs) =
+  if x == y
+    then compress (y : xs)
+    else x : compress (y : xs)

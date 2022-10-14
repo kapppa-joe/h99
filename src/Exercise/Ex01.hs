@@ -63,13 +63,11 @@ pack :: Eq a => [a] -> [[a]]
 pack [] = []
 pack xs = firstGroup : pack remaining
   where
-    firstGroup = takeWhile (== head xs) xs
-    remaining = dropWhile (== head xs) xs
+    (firstGroup, remaining) = span (== head xs) xs
 
 encode :: Eq a => [a] -> [(Int, a)]
 encode [] = []
-encode xs = (count, headChar) : encode remaining
+encode xs = (length firstGroup, headChar) : encode remaining
   where
     headChar = head xs
-    count = length $ takeWhile (== headChar) xs
-    remaining = dropWhile (== headChar) xs
+    (firstGroup, remaining) = span (== head xs) xs

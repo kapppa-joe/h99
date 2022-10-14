@@ -1,6 +1,5 @@
-module Exercise.Ex01 (strip)  where
+module Exercise.Ex01 (myLast)  where
 
-import Data.Char
 
-strip :: String -> String
-strip = dropWhile isSpace . reverse . dropWhile isSpace . reverse
+myLast :: Ord a => [a] -> a
+myLast = error "not implemented"

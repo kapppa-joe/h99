@@ -16,4 +16,4 @@ spec = do
     it "Find the last but one element of a list." $ do
       myButLast ([1,2,3,4] :: [Int]) `shouldBe` (3 :: Int)
       myButLast ['a'..'z'] `shouldBe` 'y'
-      evaluate (myButLast ['a']) `shouldThrow` errorCall "foo"
+      evaluate (myButLast ['a']) `shouldThrow` errorCall "Exception: list has less than 2 elements"

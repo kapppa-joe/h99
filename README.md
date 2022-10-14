@@ -1,5 +1,18 @@
-# Example Hspec folder configuration
-## borrowed from: https://github.com/hspec/hspec-example/
+# Ninety-Nine Haskell Problems (my solution)
+
+(WIP) My solution to the [ninety-nine haskell problems](https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems). I started this repo to practise some haskell.
+
+Folder configuration borrowed from: https://github.com/hspec/hspec-example/
+
+
+
+
+
+
+=====
+
+Below are the original text from hspec-example README
+
 
 # Running tests
 

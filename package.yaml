@@ -1,0 +1,16 @@
+name: ninety-nine-exercise
+version: 0.0.0
+license: MIT
+
+ghc-options: -Wall
+
+dependencies:
+ - base == 4.*
+
+library:
+  source-dirs: src
+
+tests:
+  spec:
+    defaults: hspec/hspec@main
+    dependencies: ninety-nine-exercise

@@ -1,7 +1,7 @@
 module Exercise.Ex01Spec (spec)  where
 
 import Test.Hspec
-import Exercise.Ex01 (myLast, myButLast, elementAt, myLength, myReverse)
+import Exercise.Ex01
 import Control.Exception (evaluate)
 import Test.Hspec.Discover (describe)
 import Test.Hspec (it, describe)
@@ -36,3 +36,11 @@ spec = do
     it "Reverse a list" $ do
       myReverse "A man, a plan, a canal, panama!" `shouldBe` "!amanap ,lanac a ,nalp a ,nam A"
       myReverse [1,2,3,4] `shouldBe` [4,3,2,1]
+
+  describe "isPalindrome" $ do
+    it "Find out whether a list is a palindrome" $ do
+      isPalindrome [1,2,3] `shouldBe` False
+      isPalindrome "madamimadam" `shouldBe` True
+      isPalindrome [1,2,4,8,16,8,4,2,1] `shouldBe` True
+      isPalindrome "abccba" `shouldBe` True
+    

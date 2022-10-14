@@ -1,5 +1,7 @@
 module Exercise.Ex01 where
 
+import Control.Monad (liftM2)
+
 myLast :: [a] -> a
 myLast lst =
   case lst of
@@ -23,10 +25,22 @@ elementAt lst index
   | otherwise   = elementAt (tail lst) (index - 1)
 
 myLength :: [a] -> Int
+myLength = foldl (\acc _ -> 1 + acc) 0
 -- myLength [] = 0
 -- myLength (_:xs) = 1 + myLength xs
-myLength = foldl (\acc _ -> 1 + acc) 0
 
 myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
+
+isPalindrome :: Eq a => [a] -> Bool
+isPalindrome = liftM2 (==) myReverse id
+-- isPalindrome xs =
+--   case xs of
+--     []  -> True
+--     [_] -> True
+--     _   -> firstElem == lastElem && isPalindrome middlePart
+--       where firstElem = head xs
+--             lastElem = last xs
+--             middlePart = tail . init $ xs
+

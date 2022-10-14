@@ -65,3 +65,11 @@ pack xs = firstGroup : pack remaining
   where
     firstGroup = takeWhile (== head xs) xs
     remaining = dropWhile (== head xs) xs
+
+encode :: Eq a => [a] -> [(Int, a)]
+encode [] = []
+encode xs = (count, headChar) : encode remaining
+  where
+    headChar = head xs
+    count = length $ takeWhile (== headChar) xs
+    remaining = dropWhile (== headChar) xs

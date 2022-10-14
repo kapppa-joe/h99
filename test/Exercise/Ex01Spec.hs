@@ -61,20 +61,8 @@ spec = do
 
   describe "pack" $ do
     it "Pack consecutive duplicates of list elements into sublists." $ do
-      pack
-        [ 'a'
-        , 'a'
-        , 'a'
-        , 'a'
-        , 'b'
-        , 'c'
-        , 'c'
-        , 'a'
-        , 'a'
-        , 'd'
-        , 'e'
-        , 'e'
-        , 'e'
-        , 'e'
-        ]
-        `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]
+      pack "aaaabccaadeeee" `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]
+
+  describe "encode" $ do
+    it "Run-length encoding of a list" $ do
+      encode "aaaabccaadeeee" `shouldBe` [(4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')]

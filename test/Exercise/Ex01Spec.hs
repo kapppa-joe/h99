@@ -1,10 +1,10 @@
 module Exercise.Ex01Spec (spec)  where
 
 import Test.Hspec
-import Exercise.Ex01 (myLast, myButLast, elementAt)
+import Exercise.Ex01 (myLast, myButLast, elementAt, myLength)
 import Control.Exception (evaluate)
 import Test.Hspec.Discover (describe)
-import Test.Hspec (it)
+import Test.Hspec (it, describe)
 
 spec :: Spec
 spec = do
@@ -26,3 +26,8 @@ spec = do
       elementAt "haskell" 5 `shouldBe` 'e'
       evaluate (elementAt "ha" 5) `shouldThrow` errorCall "Exception: index too large"
       evaluate (elementAt "ha" 0) `shouldThrow` errorCall "Exception: non-positive index"
+
+  describe "myLength" $ do
+    it "Return the number of elements of a list" $ do
+      myLength [123, 456, 789] `shouldBe` 3
+      myLength "Hello, world!" `shouldBe` 13

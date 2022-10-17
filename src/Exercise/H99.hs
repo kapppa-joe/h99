@@ -104,4 +104,6 @@ dupli (x:xs) = x : x : dupli xs
 repli :: [a] -> Int -> [a]
 repli _ 0 = []
 repli [] _ = []
-repli (x:xs) n = x : repli [x] (n-1) ++ repli xs n
+-- repli (x:xs) n = x : repli [x] (n-1) ++ repli xs n
+repli (x:xs) n = replicatedX ++ repli xs n
+  where replicatedX = (take n . repeat) x

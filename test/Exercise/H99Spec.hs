@@ -100,3 +100,9 @@ spec = do
     it "Split a list into two parts; the length of the first part is given." $ do
       split "abcdefghik" 3 `shouldBe` ("abc", "defghik")
       split "abcdefghik" 12 `shouldBe` ("abcdefghik", "")
+
+  describe "slice" $ do
+    it "Extract a slice from a list given two index i and k. Start counting the elements with 1. Both side inclusive" $ do
+      slice "abcdefghik" 3 7 `shouldBe` "cdefg"
+      slice "abcdefghik" 1 3 `shouldBe` "abc"
+      slice "abcdefghik" 7 3 `shouldBe` ""

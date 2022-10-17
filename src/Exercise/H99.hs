@@ -119,3 +119,7 @@ split l@(x : xs) n
   | otherwise = (x : firstPart, secondPart)
  where
   (firstPart, secondPart) = split xs (n - 1)
+
+
+slice :: [a] -> Int -> Int -> [a]
+slice xs i k = take (k - i + 1) $ drop (i - 1) xs

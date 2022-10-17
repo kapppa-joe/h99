@@ -98,17 +98,24 @@ decodeModified (x : xs) = decodedFirstGroup ++ decodeModified xs
 
 dupli :: [a] -> [a]
 dupli [] = []
-dupli (x:xs) = x : x : dupli xs
-
+dupli (x : xs) = x : x : dupli xs
 
 repli :: [a] -> Int -> [a]
 repli _ 0 = []
 repli [] _ = []
 -- repli (x:xs) n = x : repli [x] (n-1) ++ repli xs n
-repli (x:xs) n = replicatedX ++ repli xs n
-  where replicatedX = (take n . repeat) x {- HLINT ignore "Use replicate" -}
-
+repli (x : xs) n = replicatedX ++ repli xs n
+ where
+  replicatedX = (take n . repeat) x {- HLINT ignore "Use replicate" -}
 
 dropEvery :: [a] -> Int -> [a]
 dropEvery [] _ = []
-dropEvery xs n = take (n-1) xs ++ dropEvery (drop n xs) n
+dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
+
+split :: [a] -> Int -> ([a], [a])
+split [] _ = ([], [])
+split l@(x : xs) n
+  | n <= 0 = ([], l)
+  | otherwise = (x : firstPart, secondPart)
+ where
+  (firstPart, secondPart) = split xs (n - 1)

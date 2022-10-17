@@ -112,4 +112,8 @@ spec = do
       rotate "abcdefgh" 3 `shouldBe` "defghabc"
     it "Rotate to the right with negative index given." $ do
       rotate "abcdefgh" (-2) `shouldBe` "ghabcdef"
-      
+  
+  describe "removeAt" $ do
+    it "Remove the K'th element from a list." $ do
+      removeAt 2 "abcd" `shouldBe` (Just 'b', "acd")
+      removeAt 10 "abcd" `shouldBe` (Nothing, "abcd")

@@ -129,3 +129,10 @@ rotate xs n
   | n < 0 = rotate xs (length xs + n)
   | otherwise = zs ++ ys
     where (ys, zs) = split xs n
+
+removeAt ::  Int -> [a] -> (Maybe a, [a])
+removeAt _ [] = (Nothing, [])
+removeAt n xs = (x, ys' ++ zs)
+  where (ys, zs) = split xs n
+        x = if null zs then Nothing else Just $ last ys
+        ys' = if null zs then ys else init ys

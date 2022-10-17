@@ -77,3 +77,13 @@ spec = do
   describe "encodeModified" $ do
     it "Run-length encoding of a list (modified version)" $ do
       encodeModified "aaaabccaadeeee" `shouldBe` [Multiple 4 'a', Single 'b', Multiple 2 'c', Multiple 2 'a', Single 'd', Multiple 4 'e']
+
+  describe "decodeModified" $ do
+    it
+      "Construct the uncompressed version of the run-length encoded list"
+      $ do
+        decodeModified [Multiple 4 'a', Single 'b', Multiple 2 'c', Multiple 2 'a', Single 'd', Multiple 4 'e'] `shouldBe` "aaaabccaadeeee"
+
+  describe "dupli" $ do
+    it "Duplicate the elements of a list." $ do
+      dupli [1, 2, 3] `shouldBe` [1, 1, 2, 2, 3, 3]

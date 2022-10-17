@@ -25,7 +25,9 @@ elementAt lst index
   | otherwise = elementAt (tail lst) (index - 1)
 
 myLength :: [a] -> Int
-myLength = foldl (\acc _ -> 1 + acc) 0
+myLength xs = sum [1 | _ <- xs]
+
+-- myLength = foldl (\acc _ -> 1 + acc) 0
 
 -- myLength [] = 0
 -- myLength (_:xs) = 1 + myLength xs
@@ -62,25 +64,38 @@ compress (x : y : xs) =
 pack :: Eq a => [a] -> [[a]]
 pack [] = []
 pack xs = firstGroup : pack remaining
-  where
-    (firstGroup, remaining) = span (== head xs) xs
+ where
+  (firstGroup, remaining) = span (== head xs) xs
 
 encode :: Eq a => [a] -> [(Int, a)]
 encode [] = []
 encode xs = (length firstGroup, headChar) : encode remaining
-  where
-    headChar = head xs
-    (firstGroup, remaining) = span (== head xs) xs
+ where
+  headChar = head xs
+  (firstGroup, remaining) = span (== head xs) xs
 
 data SubList a = Single a | Multiple Int a deriving (Show, Eq)
 
 encodeModified :: Eq a => [a] -> [SubList a]
 encodeModified ([] :: [a]) = [] :: [SubList a]
 encodeModified xs = firstGroupEncoded : encodeModified remaining
-  where
-    headChar = head xs
-    (firstGroup, remaining) = span (== headChar) xs
-    firstGroupEncoded = 
-      if length firstGroup == 1 
-        then Single headChar 
-        else Multiple (length firstGroup) headChar
+ where
+  headChar = head xs
+  (firstGroup, remaining) = span (== headChar) xs
+  firstGroupEncoded =
+    if length firstGroup == 1
+      then Single headChar
+      else Multiple (length firstGroup) headChar
+
+decodeModified :: Eq a => [SubList a] -> [a]
+decodeModified [] = []
+decodeModified (x : xs) = decodedFirstGroup ++ decodeModified xs
+ where
+  decodedFirstGroup =
+    case x of
+      Single char -> [char]
+      Multiple count char -> replicate count char
+
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = x : x : dupli xs

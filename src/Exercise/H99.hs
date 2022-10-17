@@ -141,3 +141,8 @@ insertAt :: a -> [a] -> Int -> [a]
 insertAt x xs n = ys ++ x : zs
   where ys = take (n - 1) xs
         zs = drop (n - 1) xs
+
+range :: Int -> Int -> [Int]
+range from to
+  | to < from  = []
+  | otherwise = from : range (from + 1) to

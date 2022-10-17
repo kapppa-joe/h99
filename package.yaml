@@ -13,4 +13,6 @@ library:
 tests:
   spec:
     defaults: hspec/hspec@main
-    dependencies: ninety-nine-exercise
+    dependencies: 
+      - ninety-nine-exercise
+      - random

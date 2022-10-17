@@ -2,7 +2,6 @@ module Exercise.H99.ListSpec (spec) where
 
 import Control.Exception (evaluate)
 import Exercise.H99.List
-import Exercise.H99.List (SubList)
 import Test.Hspec (
   Spec,
   describe,
@@ -127,3 +126,9 @@ spec = do
       range 4 9 `shouldBe` [4,5,6,7,8,9]
       range (-1) 3 `shouldBe` [-1, 0, 1, 2, 3]
       range 3 1 `shouldBe` []
+
+  -- describe "rndSelect" $ do
+  --   it "Extract a given number of randomly selected elements from a list" $ do
+  --     let output = rndSelect "abcdefgh" 3
+  --     length output `shouldBe` 3
+  --     all (`elem` output) output `shouldBe` True

@@ -1,6 +1,7 @@
 module Exercise.H99.List where
 
 import Control.Monad (liftM2)
+import System.Random (randomRs, getStdGen)
 
 myLast :: [a] -> a
 myLast lst =
@@ -146,3 +147,8 @@ range :: Int -> Int -> [Int]
 range from to
   | to < from  = []
   | otherwise = from : range (from + 1) to
+
+-- rndSelect :: [a] -> Int -> IO [a]
+-- rndSelect xs n = do
+--     gen <- getStdGen
+--     return $ take n [ xs !! x | x <- randomRs (0, length xs - 1) gen]

@@ -34,5 +34,6 @@ test-suite spec
       base ==4.*
     , hspec ==2.*
     , ninety-nine-exercise
+    , random
   default-language: Haskell2010
   build-tool-depends: hspec-discover:hspec-discover == 2.*

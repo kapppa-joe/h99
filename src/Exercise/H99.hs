@@ -99,3 +99,9 @@ decodeModified (x : xs) = decodedFirstGroup ++ decodeModified xs
 dupli :: [a] -> [a]
 dupli [] = []
 dupli (x:xs) = x : x : dupli xs
+
+
+repli :: [a] -> Int -> [a]
+repli _ 0 = []
+repli [] _ = []
+repli (x:xs) n = x : repli [x] (n-1) ++ repli xs n

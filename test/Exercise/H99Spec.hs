@@ -91,3 +91,7 @@ spec = do
   describe "repli" $ do
     it "Replicate the elements of a list a given number of times." $ do
       repli "abc" 3 `shouldBe` "aaabbbccc"
+
+  describe "dropEvery" $ do
+    it "Drop every N'th element from a list." $ do
+      dropEvery "abcdefghik" 3 `shouldBe` "abdeghk"

@@ -106,3 +106,10 @@ spec = do
       slice "abcdefghik" 3 7 `shouldBe` "cdefg"
       slice "abcdefghik" 1 3 `shouldBe` "abc"
       slice "abcdefghik" 7 3 `shouldBe` ""
+
+  describe "rotate" $ do
+    it "Rotate a list N places to the left." $ do
+      rotate "abcdefgh" 3 `shouldBe` "defghabc"
+    it "Rotate to the right with negative index given." $ do
+      rotate "abcdefgh" (-2) `shouldBe` "ghabcdef"
+      

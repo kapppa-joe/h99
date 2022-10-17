@@ -123,3 +123,9 @@ split l@(x : xs) n
 
 slice :: [a] -> Int -> Int -> [a]
 slice xs i k = take (k - i + 1) $ drop (i - 1) xs
+
+rotate :: [a] -> Int -> [a]
+rotate xs n
+  | n < 0 = rotate xs (length xs + n)
+  | otherwise = zs ++ ys
+    where (ys, zs) = split xs n

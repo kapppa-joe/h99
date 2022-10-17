@@ -117,3 +117,7 @@ spec = do
     it "Remove the K'th element from a list." $ do
       removeAt 2 "abcd" `shouldBe` (Just 'b', "acd")
       removeAt 10 "abcd" `shouldBe` (Nothing, "abcd")
+
+  describe "insertAt" $ do
+    it "Insert an element at a given position into a list" $ do
+      insertAt 'X' "abcd" 2 `shouldBe` "aXbcd"

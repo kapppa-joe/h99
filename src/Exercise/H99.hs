@@ -136,3 +136,8 @@ removeAt n xs = (x, ys' ++ zs)
   where (ys, zs) = split xs n
         x = if null zs then Nothing else Just $ last ys
         ys' = if null zs then ys else init ys
+
+insertAt :: a -> [a] -> Int -> [a]
+insertAt x xs n = ys ++ x : zs
+  where ys = take (n - 1) xs
+        zs = drop (n - 1) xs

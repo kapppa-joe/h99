@@ -1,4 +1,4 @@
-module Exercise.H99 where
+module Exercise.H99.List where
 
 import Control.Monad (liftM2)
 
@@ -77,7 +77,7 @@ encode xs = (length firstGroup, headChar) : encode remaining
 data SubList a = Single a | Multiple Int a deriving (Show, Eq)
 
 encodeModified :: Eq a => [a] -> [SubList a]
-encodeModified ([] :: [a]) = [] :: [SubList a]
+encodeModified [] = []
 encodeModified xs = firstGroupEncoded : encodeModified remaining
  where
   headChar = head xs

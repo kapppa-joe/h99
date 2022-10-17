@@ -1,8 +1,8 @@
-module Exercise.H99Spec (spec) where
+module Exercise.H99.ListSpec (spec) where
 
 import Control.Exception (evaluate)
-import Exercise.H99
-import Exercise.H99 (SubList)
+import Exercise.H99.List
+import Exercise.H99.List (SubList)
 import Test.Hspec (
   Spec,
   describe,

@@ -135,3 +135,10 @@ spec = do
       actualLength `shouldBe` 3
       allAreElements <- (\lst -> all (`elem` lst) lst) <$> output
       allAreElements `shouldBe` True
+
+  describe "combinations" $ do
+    it "Generate the combinations of K distinct objects chosen from the N elements of a list" $ do
+      let actual = combinations 3 "abcdef"
+      all (`elem` actual) ["abc", "abd", "abe"] `shouldBe` True
+      length (combinations 3 "abcdef") `shouldBe` 20
+      all (== 3) [length lst | lst <- combinations 3 "abcdef"] `shouldBe` True

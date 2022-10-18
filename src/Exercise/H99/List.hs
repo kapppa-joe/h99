@@ -154,3 +154,13 @@ rndSelect :: [a] -> Int -> IO [a]
 rndSelect xs n = do
   gen <- getStdGen
   return $ take n [xs !! x | x <- randomRs (0, length xs - 1) gen]
+
+combinations :: Int -> [a] -> [[a]]
+combinations _ [] = [[]]
+combinations n l@(x:xs)
+  | n < 0 = error "k must be non-negative"
+  | n == 0 = [[]]
+  | n == length l = [l]
+  | otherwise = withX ++ withoutX
+    where withX = [ x: lst | lst <- combinations (n-1) xs]
+          withoutX = combinations n xs

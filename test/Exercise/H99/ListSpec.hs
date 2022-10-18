@@ -2,6 +2,7 @@ module Exercise.H99.ListSpec (spec) where
 
 import Control.Exception (evaluate)
 import Exercise.H99.List
+import Control.Monad.IO.Class
 import Test.Hspec (
   Spec,
   describe,
@@ -127,8 +128,11 @@ spec = do
       range (-1) 3 `shouldBe` [-1, 0, 1, 2, 3]
       range 3 1 `shouldBe` []
 
-  -- describe "rndSelect" $ do
-  --   it "Extract a given number of randomly selected elements from a list" $ do
-  --     let output = rndSelect "abcdefgh" 3
-  --     length output `shouldBe` 3
-  --     all (`elem` output) output `shouldBe` True
+  describe "rndSelect" $ do
+    it "Extract a given number of randomly selected elements from a list" $ do
+      let output = rndSelect "abcdefgh" 3
+      actualLength <- length <$> output
+      actualLength `shouldBe` 3
+      allAreElements <- (\lst -> all (`elem` lst) lst) <$> output
+      allAreElements `shouldBe` True
+  

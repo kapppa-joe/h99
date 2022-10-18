@@ -11,6 +11,7 @@ build-type:     Simple
 
 library
   exposed-modules:
+      Exercise.Algorithm.Sort
       Exercise.H99.List
   other-modules:
       Paths_ninety_nine_exercise
@@ -26,6 +27,7 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Exercise.Algorithm.SortSpec
       Exercise.H99.ListSpec
       Paths_ninety_nine_exercise
   hs-source-dirs:

@@ -22,5 +22,5 @@ quickSort [] = []
 quickSort [x] = [x]
 quickSort (x:xs) = smaller ++ [x] ++ larger
   where 
-    smaller = quickSort $ filter (<= x) xs
-    larger = quickSort $ filter (> x) xs
+    smaller = quickSort $ filter (< x) xs
+    larger = quickSort $ filter (>= x) xs

@@ -1,7 +1,6 @@
 module Exercise.H99.ListSpec (spec) where
 
 import Control.Exception (evaluate)
-import Control.Monad.IO.Class
 import Exercise.H99.List
 import Test.Hspec (
   Spec,

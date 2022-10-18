@@ -9,6 +9,7 @@ import Test.Hspec (
   it,
   shouldBe,
   shouldThrow,
+  shouldContain,
  )
 
 spec :: Spec
@@ -139,5 +140,16 @@ spec = do
     it "Generate the combinations of K distinct objects chosen from the N elements of a list" $ do
       let actual = combinations 3 "abcdef"
       all (`elem` actual) ["abc", "abd", "abe"] `shouldBe` True
-      length (combinations 3 "abcdef") `shouldBe` 20
-      all (== 3) [length lst | lst <- combinations 3 "abcdef"] `shouldBe` True
+      length actual `shouldBe` 20
+      all (== 3) [length lst | lst <- actual] `shouldBe` True
+
+  describe "Group" $ do 
+    it "Group the elements of a set into disjoint subsets." $ do
+      let actual = group [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
+      length actual `shouldBe` 1260
+      actual `shouldContain` [[["aldo","beat"],["carla","david","evi"],["flip","gary","hugo","ida"]]]
+      actual `shouldContain` [[["hugo", "ida"], ["evi", "flip","gary"], ["aldo","beat", "carla","david"]]]
+
+      let actual2 = group [2,2,5] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
+      length actual2 `shouldBe` 756
+      actual2 `shouldContain` [[["aldo","beat"],["carla","david"],["evi","flip","gary","hugo","ida"]]]

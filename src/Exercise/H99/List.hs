@@ -2,6 +2,7 @@ module Exercise.H99.List where
 
 import Control.Monad (liftM2)
 import System.Random (getStdGen, randomRs)
+import Data.List ((\\))
 
 myLast :: [a] -> a
 myLast lst =
@@ -164,3 +165,10 @@ combinations n l@(x:xs)
   | otherwise = withX ++ withoutX
     where withX = [ x: lst | lst <- combinations (n-1) xs]
           withoutX = combinations n xs
+
+group :: Eq a => [Int] -> [a] -> [[[a]]]
+group [] _ = [[]]
+group (x:xs) set = do 
+  firstGroup <- combinations x set
+  restGroups <- group xs (set \\ firstGroup)
+  return (firstGroup:restGroups)

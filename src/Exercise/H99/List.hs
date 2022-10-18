@@ -1,7 +1,7 @@
 module Exercise.H99.List where
 
 import Control.Monad (liftM2)
-import System.Random (randomRs, getStdGen)
+import System.Random (getStdGen, randomRs)
 
 myLast :: [a] -> a
 myLast lst =
@@ -121,7 +121,6 @@ split l@(x : xs) n
  where
   (firstPart, secondPart) = split xs (n - 1)
 
-
 slice :: [a] -> Int -> Int -> [a]
 slice xs i k = take (k - i + 1) $ drop (i - 1) xs
 
@@ -129,26 +128,29 @@ rotate :: [a] -> Int -> [a]
 rotate xs n
   | n < 0 = rotate xs (length xs + n)
   | otherwise = zs ++ ys
-    where (ys, zs) = split xs n
+ where
+  (ys, zs) = split xs n
 
-removeAt ::  Int -> [a] -> (Maybe a, [a])
+removeAt :: Int -> [a] -> (Maybe a, [a])
 removeAt _ [] = (Nothing, [])
 removeAt n xs = (x, ys' ++ zs)
-  where (ys, zs) = split xs n
-        x = if null zs then Nothing else Just $ last ys
-        ys' = if null zs then ys else init ys
+ where
+  (ys, zs) = split xs n
+  x = if null zs then Nothing else Just $ last ys
+  ys' = if null zs then ys else init ys
 
 insertAt :: a -> [a] -> Int -> [a]
 insertAt x xs n = ys ++ x : zs
-  where ys = take (n - 1) xs
-        zs = drop (n - 1) xs
+ where
+  ys = take (n - 1) xs
+  zs = drop (n - 1) xs
 
 range :: Int -> Int -> [Int]
 range from to
-  | to < from  = []
+  | to < from = []
   | otherwise = from : range (from + 1) to
 
 rndSelect :: [a] -> Int -> IO [a]
 rndSelect xs n = do
-    gen <- getStdGen
-    return $ take n [ xs !! x | x <- randomRs (0, length xs - 1) gen]
+  gen <- getStdGen
+  return $ take n [xs !! x | x <- randomRs (0, length xs - 1) gen]

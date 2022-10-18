@@ -1,8 +1,8 @@
 module Exercise.H99.ListSpec (spec) where
 
 import Control.Exception (evaluate)
-import Exercise.H99.List
 import Control.Monad.IO.Class
+import Exercise.H99.List
 import Test.Hspec (
   Spec,
   describe,
@@ -112,7 +112,7 @@ spec = do
       rotate "abcdefgh" 3 `shouldBe` "defghabc"
     it "Rotate to the right with negative index given." $ do
       rotate "abcdefgh" (-2) `shouldBe` "ghabcdef"
-  
+
   describe "removeAt" $ do
     it "Remove the K'th element from a list." $ do
       removeAt 2 "abcd" `shouldBe` (Just 'b', "acd")
@@ -124,7 +124,7 @@ spec = do
 
   describe "range" $ do
     it "Create a list containing all integers within a given range" $ do
-      range 4 9 `shouldBe` [4,5,6,7,8,9]
+      range 4 9 `shouldBe` [4, 5, 6, 7, 8, 9]
       range (-1) 3 `shouldBe` [-1, 0, 1, 2, 3]
       range 3 1 `shouldBe` []
 
@@ -135,4 +135,3 @@ spec = do
       actualLength `shouldBe` 3
       allAreElements <- (\lst -> all (`elem` lst) lst) <$> output
       allAreElements `shouldBe` True
-  

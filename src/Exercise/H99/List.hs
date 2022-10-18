@@ -2,7 +2,8 @@ module Exercise.H99.List where
 
 import Control.Monad (liftM2)
 import System.Random (getStdGen, randomRs)
-import Data.List ((\\))
+import Data.List ((\\), groupBy, nub)
+import Exercise.Algorithm.Sort (quickSortBy)
 
 myLast :: [a] -> a
 myLast lst =
@@ -172,3 +173,13 @@ group (x:xs) set = do
   firstGroup <- combinations x set
   restGroups <- group xs (set \\ firstGroup)
   return (firstGroup:restGroups)
+
+lsort :: [[a]] -> [[a]]
+lsort = flip quickSortBy length
+
+lfsort :: [[a]] -> [[a]]
+lfsort xs = quickSortBy xs $ freq . length
+  where
+    allLengths = map length xs
+    freq x = length $ filter (==x) allLengths
+

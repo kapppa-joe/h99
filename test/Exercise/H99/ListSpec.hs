@@ -153,3 +153,12 @@ spec = do
       let actual2 = group [2,2,5] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
       length actual2 `shouldBe` 756
       actual2 `shouldContain` [[["aldo","beat"],["carla","david"],["evi","flip","gary","hugo","ida"]]]
+
+  describe "lsort" $ do
+    it "Sort a list of lists according to length of sublists" $ do
+      lsort ["abc","de","fgh","de","ijkl","mn","o"] `shouldBe` ["o","de","de","mn","abc","fgh","ijkl"]
+
+  describe "lfsort" $ do
+    it "Sort a list of lists according to their length frequency" $ do
+      lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] `shouldBe` ["ijkl","o","abc","fgh","de","de","mn"]
+    

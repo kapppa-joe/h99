@@ -24,3 +24,12 @@ quickSort (x:xs) = smaller ++ [x] ++ larger
   where 
     smaller = quickSort $ filter (< x) xs
     larger = quickSort $ filter (>= x) xs
+
+quickSortBy :: Ord b => [a] -> (a -> b) -> [a]
+quickSortBy [] _ = []
+quickSortBy [x] _ = [x]
+quickSortBy (x:xs) f = smaller ++ [x] ++ larger
+  where
+    fx = f x
+    smaller = quickSortBy (filter (\y -> f y < fx) xs) f
+    larger = quickSortBy (filter (\y -> f y >= fx) xs) f

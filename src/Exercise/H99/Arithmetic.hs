@@ -1,14 +1,14 @@
 module Exercise.H99.Arithmetic where
 
-isPrime :: Integer -> Bool
+isPrime :: Integral a => a -> Bool
 isPrime x
   | x < 2 = False
   | even x = x == 2
   | otherwise = all (\d -> x `mod` d /= 0) [3, 5 .. squareRoot]
  where
-  squareRoot :: Integer = fromIntegral $ ceiling $ sqrt $ fromIntegral x
+  squareRoot = ceiling $ sqrt $ fromIntegral x
 
-myGCD :: Integer -> Integer -> Integer
+myGCD :: Integral a => a -> a -> a
 myGCD x y =
   case reminder of
     0 -> abs y
@@ -16,9 +16,11 @@ myGCD x y =
  where
   reminder = x `rem` y
 
-coprime :: Integer -> Integer -> Bool
+coprime :: Integral a => a -> a -> Bool
 coprime x y = myGCD x y == 1
 
-totient :: Integer -> Integer
+totient :: Integral a => a -> a
 totient 1 = 1
 totient x = sum [1 | y <- [1..(pred x)], coprime x y]
+
+-- primeFactors :: Integral a -> a -> [a]

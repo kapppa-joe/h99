@@ -18,3 +18,7 @@ myGCD x y =
 
 coprime :: Integer -> Integer -> Bool
 coprime x y = myGCD x y == 1
+
+totient :: Integer -> Integer
+totient 1 = 1
+totient x = sum [1 | y <- [1..(pred x)], coprime x y]

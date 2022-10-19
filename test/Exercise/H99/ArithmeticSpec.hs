@@ -28,3 +28,9 @@ spec = do
   describe "myGCD" $ do
     it "Determine the greatest common divisor of two integers" $ do
       [myGCD 36 63, myGCD (-3) (-6), myGCD (-3) 6] `shouldBe` [9,3,3]
+
+  describe "coprime" $ do
+    it "Determine whether two positive integer numbers are coprime" $ do
+      coprime 35 64 `shouldBe` True
+      coprime 15 99 `shouldBe` False
+  

@@ -15,3 +15,6 @@ myGCD x y =
     _ -> myGCD y reminder
  where
   reminder = x `rem` y
+
+coprime :: Integer -> Integer -> Bool
+coprime x y = myGCD x y == 1

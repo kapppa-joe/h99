@@ -21,6 +21,11 @@ coprime x y = myGCD x y == 1
 
 totient :: Integral a => a -> a
 totient 1 = 1
-totient x = sum [1 | y <- [1..(pred x)], coprime x y]
+totient x = sum [1 | y <- [1 .. (pred x)], coprime x y]
 
--- primeFactors :: Integral a -> a -> [a]
+primeFactors :: Integral a => a -> [a]
+primeFactors x
+  | x < 2 = []
+  | otherwise = factor : primeFactors (x `div` factor)
+ where
+  factor = head [y | y <- [2 .. x], x `rem` y == 0, isPrime y]

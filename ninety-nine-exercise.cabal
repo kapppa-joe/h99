@@ -12,6 +12,7 @@ build-type:     Simple
 library
   exposed-modules:
       Exercise.Algorithm.Sort
+      Exercise.H99.Arithmetic
       Exercise.H99.List
   other-modules:
       Paths_ninety_nine_exercise
@@ -28,6 +29,7 @@ test-suite spec
   main-is: Spec.hs
   other-modules:
       Exercise.Algorithm.SortSpec
+      Exercise.H99.ArithmeticSpec
       Exercise.H99.ListSpec
       Paths_ninety_nine_exercise
   hs-source-dirs:

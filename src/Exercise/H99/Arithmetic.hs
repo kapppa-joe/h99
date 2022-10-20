@@ -48,3 +48,16 @@ primesR x y
   | x <= 2 && y >= 2 = 2 : primesR 3 y
   | even x = filter isPrime [x + 1, x + 3 .. y]
   | otherwise = filter isPrime [x, x + 2 .. y]
+
+goldbach :: Integral a => a -> (a, a)
+goldbach x
+  | odd x || x < 4 = error "must be an even number >= 4"
+  | x == 4 = (2, 2)
+  | otherwise = head [(prime, x - prime) | prime <- primesR 3 (x `div` 2), isPrime (x - prime)]
+
+goldbachList :: Integral a => a -> a -> [(a, a)]
+goldbachList x y = [goldbach num | num <- [x'..y], even num]
+  where x' = max x 4
+
+goldbachList' :: Integral a => a -> a -> a -> [(a, a)]
+goldbachList' x y k = [pair | pair <- goldbachList x y, fst pair > k]

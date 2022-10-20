@@ -1,5 +1,7 @@
 module Exercise.H99.Arithmetic where
 
+import Data.List (group)
+
 isPrime :: Integral a => a -> Bool
 isPrime x
   | x < 2 = False
@@ -29,3 +31,20 @@ primeFactors x
   | otherwise = factor : primeFactors (x `div` factor)
  where
   factor = head [y | y <- [2 .. x], x `rem` y == 0, isPrime y]
+
+primeFactorsMult :: Integral a => a -> [(a, a)]
+primeFactorsMult x = map packMultiplicity $ group $ primeFactors x
+ where
+  packMultiplicity xs = (head xs, fromIntegral $ length xs)
+
+phi :: Integral a => a -> a
+phi x = product $ map f $ primeFactorsMult x
+ where
+  f (fac, mult) = (fac - 1) * fac ^ (mult - 1)
+
+
+primesR :: Integral a => a -> a -> [a]
+primesR x y 
+  | x <= 2 && y >= 2 = 2 : primesR 3 y
+  | even x = filter isPrime [x + 1, x + 3 .. y]
+  | otherwise = filter isPrime [x, x + 2 .. y]

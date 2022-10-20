@@ -43,3 +43,21 @@ spec = do
       primeFactors 315 `shouldBe` [3, 3, 5, 7]
       primeFactors 13 `shouldBe` [13]
       primeFactors 64 `shouldBe` [2, 2, 2, 2, 2, 2]
+
+  describe "primeFactorsMult" $ do
+    it "Return the prime factors with their multiplicity." $ do
+      primeFactorsMult 315 `shouldBe` [(3, 2), (5, 1), (7, 1)]
+      primeFactorsMult 13 `shouldBe` [(13, 1)]
+      primeFactorsMult 64 `shouldBe` [(2, 6)]
+
+  describe "phi" $ do
+    it "Calculate the Euler's totient (phi) of a given positive integer, with an improved algorithm utilising prime factors" $ do
+      phi 10 `shouldBe` 4
+      phi 123456 `shouldBe` 41088
+
+  describe "primeR" $ do
+    it "Construct a list of all prime numbers in a given range." $ do
+      primesR 1 10 `shouldBe` [2,3,5,7]
+      primesR 2 10 `shouldBe` [2,3,5,7]
+      primesR 10 20 `shouldBe` [11,13,17,19]
+      primesR (-100) 100 `shouldBe` [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]

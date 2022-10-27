@@ -14,6 +14,7 @@ library
       Exercise.Algorithm.Sort
       Exercise.H99.Arithmetic
       Exercise.H99.List
+      Exercise.H99.LogicAndCodes
   other-modules:
       Paths_ninety_nine_exercise
   hs-source-dirs:
@@ -31,6 +32,7 @@ test-suite spec
       Exercise.Algorithm.SortSpec
       Exercise.H99.ArithmeticSpec
       Exercise.H99.ListSpec
+      Exercise.H99.LogicAndCodesSpec
       Paths_ninety_nine_exercise
   hs-source-dirs:
       test
